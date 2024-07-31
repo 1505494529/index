@@ -1,0 +1,129 @@
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dongshi 的内网导航栏</title>
+  <style>
+    a {
+      text-decoration: none;
+    }
+
+    body {
+      background-color: #f8f9fa;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #007bff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+   .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+   .links a {
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      display: block;
+      transition: all 0.3s ease;
+    }
+
+   .links a:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="mb-4">Dongshi 的内网导航栏</h1>
+    <div class="links">
+      <a href="https://docs.popo.netease.com/lingxi/356638bd93194da88f4703679a9d7f10">磨课记录</a>
+      <a href="https://xingzheng.inner.youdao.com/dashboard/analysis">预约直播间</a>
+      <a href="https://shimo.youdao.com/sheets/3DMrvd9z095lfQD6/MODOC/">PPT 问题</a>
+      <a href="https://shimo.youdao.com/sheets/AYJxKd7jzpboHZ07/ArXC9/">排班</a>
+      <a href="https://shimo.youdao.com/sheets/q50YewJjE0wEC00Y/MODOC/">主讲老师信息</a>
+      <a href="https://shimo.youdao.com/folder/AX5rmdEnaKZbUVK9">L1 课程信息</a>
+    <a href="https://www.baidu.com">百度</a></div>
+    <button onclick="addLink()">添加链接</button>
+    <button onclick="deleteLink()">删除链接</button>
+  </div>
+  <script>
+    function addLink() {
+      // 获取用户输入的链接和文本
+      let newLink = prompt("请输入新链接的地址：");
+      let newText = prompt("请输入新链接的文本：");
+
+      if (newLink && newText) {
+        // 创建新的链接元素
+        let newAnchor = document.createElement('a');
+        newAnchor.href = newLink;
+        newAnchor.textContent = newText;
+
+        // 将新链接添加到链接容器中
+        document.querySelector('.links').appendChild(newAnchor);
+
+        // 准备发送更新后的 HTML 文本
+        let updatedHtml = document.documentElement.outerHTML;
+        sendUpdateRequest(updatedHtml);
+      }
+    }
+
+    function deleteLink() {
+      // 获取用户选择要删除的链接
+      let linkToDelete = prompt("请输入要删除的链接的文本：");
+
+      if (linkToDelete) {
+        // 查找并删除指定的链接
+        let links = document.querySelectorAll('.links a');
+        for (let link of links) {
+          if (link.textContent === linkToDelete) {
+            link.remove();
+            break;
+          }
+        }
+
+        // 准备发送更新后的 HTML 文本
+        let updatedHtml = document.documentElement.outerHTML;
+        sendUpdateRequest(updatedHtml);
+      }
+    }
+
+    function sendUpdateRequest(html) {
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://api.textdb.online/update');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      let params = new URLSearchParams();
+      params.append('key', '1505494529');
+      params.append('value', html);
+      xhr.send(params);
+    }
+  </script>
+
+
+</body></html>

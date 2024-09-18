@@ -9,7 +9,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
 
         body {
-            background: linear-gradient(45deg, #4c5552, #45494d);
+            background: linear-gradient(45deg, #e5ebe4, #eef3f3);
             font-family: 'Poppins', sans-serif;
             color: white;
             margin: 0;
@@ -17,8 +17,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            margin: 30px 0;
         }
 
         h1 {
@@ -39,7 +38,7 @@
         }
 
         .container {
-            background: linear-gradient(45deg, #86a59a, #8892a7);
+            background: linear-gradient(45deg, #bed8bb, #b4cfce);
             background-color: rgba(255, 255, 255, 0.1);
             padding: 40px;
             border-radius: 20px;
@@ -137,8 +136,8 @@
         }
 
         input[type="text"]:focus {
-            border-color: #ff69b4;
-            box-shadow: 0 0 10px #ff69b4, 0 0 40px #1e90ff;
+            border-color: #76f1bc;
+            box-shadow: 0 0 10px #a5c4a3, 0 0 40px #1e90ff;
         }
 
         button.add-button {
@@ -199,15 +198,17 @@
             .then(res => res.json())
             .then(res => {
                 const linksDiv = document.querySelector('.links');
-                linksDiv.innerHTML = ''; // 清空现有内容
+                linksDiv.innerHTML = ''; 
                 res.results.forEach(item => {
                     const linkDiv = document.createElement('div');
-                    linkDiv.onclick = event => {
-                        event.preventDefault();
-                        window.open(item.src, '_blank');
-                    };
                     linkDiv.classList.add('link-item');
-                    
+                    linkDiv.addEventListener('click', (event) => {
+                        // 检查点击的是不是按钮
+                        if (!event.target.closest('.update-button, .delete-button')) {
+                            // 如果不是按钮，则打开链接
+                            window.open(item.src, '_blank');
+                        }
+                    });
                     const link = document.createElement('a');
                     link.href = item.src;
                     link.textContent = item.name;
@@ -222,8 +223,10 @@
                     updateButton.onclick = event => {
                         event.preventDefault();
                         const newSrc = prompt('请输入地址:', item.src);
+                        if (!newSrc) newSrc = item.src;
                         const newName = prompt('请输入记录名:', item.name);
-                        if (newSrc && newName) {
+                        if (!newName) newName = item.name;
+                        if (newSrc != item.src || newName != item.name) {
                             put(item.objectId, newSrc, newName);
                         }
                     };

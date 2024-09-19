@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+body {
+    background: linear-gradient(45deg, #e5ebe4, #eef3f3);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+
+    color: white;
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
+    text-align: left;
+    animation: neon 1.5s infinite alternate;
+}
+
+@keyframes neon {
+    0% {
+        text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4, 0 0 50px #ff69b4, 0 0 60px #ff69b4;
+    }
+    100% {
+        text-shadow: 0 0 20px #1e90ff, 0 0 30px #1e90ff, 0 0 40px #1e90ff, 0 0 50px #1e90ff, 0 0 60px #1e90ff;
+    }
+}
+
+.container {
+    background: linear-gradient(45deg, #bed8bb, #b4cfce);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0 40px 40px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    max-width: 1200px;
+    backdrop-filter: blur(15px);
+    position: relative;
+    animation: float 5s ease-in-out infinite;
+}
+
+.links {
+    margin-bottom: 30px;
+}
+
+.link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    margin-bottom: 1%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.link-item:hover {
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5), -5px -5px 30px rgba(255, 255, 255, 0.5);
+}
+
+.link-item a {
+    font-size: 1.3rem;
+    color: white;
+    background: linear-gradient(45deg, #ff69b4, #1e90ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+.link-item a:hover {
+    background: linear-gradient(45deg, #1e90ff, #ff69b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.action-buttons button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.action-buttons button.update-button {
+    background: linear-gradient(145deg, #28a745, #218838);
+    color: white;
+}
+
+.action-buttons button.update-button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(145deg, #218838, #28a745);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.action-buttons button.delete-button {
+    background: linear-gradient(145deg, #dc3545, #c82333);
+    color: white;
+}
+
+.action-buttons button.delete-button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(145deg, #c82333, #dc3545);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+input[type="text"] {
+    padding: 15px;
+    font-size: 1.2rem;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    background: #f6faf9;
+    color: rgb(0, 0, 0);
+    outline: none;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #76f1bc;
+    box-shadow: 0 0 10px #a5c4a3, 0 0 40px #1e90ff;
+}
+
+button.add-button {
+    font-size: 1.5rem;
+    padding: 12px 25px;
+    background: linear-gradient(145deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+button.add-button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(145deg, #0056b3, #007bff);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+    color: #dcdcdc;
+}

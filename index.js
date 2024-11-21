@@ -28,7 +28,7 @@ function get() {
                     window.open(item.src, '_blank');
                 }
             });
-            const link = document.createElement('a');
+            const link = document.createElement('p');
             link.href = item.src;
             link.textContent = item.name;
             link.target = '_blank';

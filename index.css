@@ -61,7 +61,7 @@ h1 {
     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5), -5px -5px 30px rgba(255, 255, 255, 0.5);
 }
 
-.link-item a {
+.link-item p {
     font-size: 1.3rem;
     color: white;
     background: linear-gradient(45deg, #ff69b4, #1e90ff);

@@ -1,157 +1,199 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
 
+/* 基本样式 */
 body {
     background: linear-gradient(45deg, #e5ebe4, #eef3f3);
-    font-family: 'Poppins', sans-serif;
-    color: white;
+    font-family: 'Poppins', 'Noto Sans SC', sans-serif; /* 添加 Noto Sans SC 作为中文后备 */
+    color: #333;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* 让 footer 能在底部 */
+    justify-content: flex-start; /* 从顶部开始 */
     align-items: center;
 }
 
 h1 {
-
-    color: white;
-    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
-    text-align: left;
-    animation: neon 1.5s infinite alternate;
-}
-
-@keyframes neon {
-    0% {
-        text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4, 0 0 50px #ff69b4, 0 0 60px #ff69b4;
-    }
-    100% {
-        text-shadow: 0 0 20px #1e90ff, 0 0 30px #1e90ff, 0 0 40px #1e90ff, 0 0 50px #1e90ff, 0 0 60px #1e90ff;
-    }
+    color: #4a5a49;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    text-align: center; /* 居中标题 */
+    margin-bottom: 30px;
+    font-weight: 600;
+    width: 100%; /* 确保标题宽度足够居中 */
 }
 
 .container {
-    background: linear-gradient(45deg, #bed8bb, #b4cfce);
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 0 40px 40px 40px;
+    background: linear-gradient(135deg, #dde8db, #d4e0df);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 30px 40px 40px 40px;
     border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    width: 80%;
-    max-width: 1200px;
-    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 800px; /* 调整最大宽度 */
     position: relative;
-    animation: float 5s ease-in-out infinite;
+    margin-top: 20px; /* 顶部间距 */
 }
 
 .links {
     margin-bottom: 30px;
+    padding: 10px 0; /* 上下增加 padding 给动画留空间 */
+    min-height: 50px; /* 防止空列表时塌陷 */
+    position: relative;
 }
 
+.loading-placeholder {
+    /* Style defined inline in HTML for initial display */
+}
+
+/* 链接项样式 */
 .link-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    background: linear-gradient(145deg, #f0f7f0, #e6eded);
     border-radius: 15px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.3);
-    padding: 20px;
-    margin-bottom: 1%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.6);
+    padding: 15px 20px; /* 内边距 */
+    margin-bottom: 15px; /* 项之间的垂直间距 */
+    /* Calculate approximate height: padding(15+15) + line-height(~25) = 55px */
+    transition: box-shadow 0.3s ease, transform 0.2s ease, opacity 0.2s ease; /* Add opacity transition */
+    /* cursor: grab; */ /* REMOVED */
+    user-select: none; /* 防止拖拽时选中文本 */
+    position: relative;
+    box-sizing: border-box;
 }
 
-.link-item:hover {
-    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5), -5px -5px 30px rgba(255, 255, 255, 0.5);
+/* Removed :active cursor style */
+
+/* Style for the item being dragged */
+.link-item.dragging {
+    opacity: 0.4; /* Make dragged item semi-transparent */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    cursor: default !important; /* Force default arrow cursor */
+    /* visibility: hidden; */ /* Optional: If you hide original */
 }
+
 
 .link-item p {
-    font-size: 1.3rem;
-    color: white;
-    background: linear-gradient(45deg, #ff69b4, #1e90ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-decoration: none;
-    transition: all 0.5s ease;
+    font-size: 1.1rem; /* 调整字体大小 */
+    line-height: 1.4; /* 估算行高 */
+    color: #333;
+    margin: 0;
+    flex-grow: 1;
+    margin-right: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    pointer-events: none; /* 防止 P 元素干扰拖拽事件 */
 }
 
-.link-item a:hover {
-    background: linear-gradient(45deg, #1e90ff, #ff69b4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
+/* 按钮组和按钮样式 */
 .action-buttons {
     display: flex;
-    gap: 15px;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .action-buttons button {
-    font-size: 1rem;
-    padding: 10px 20px;
+    font-size: 0.85rem; /* 按钮字体稍小 */
+    padding: 7px 14px; /* 按钮内边距 */
     border: none;
     border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer; /* Keep pointer on buttons */
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    color: white; /* 统一文字颜色 */
 }
 
 .action-buttons button.update-button {
-    background: linear-gradient(145deg, #28a745, #218838);
-    color: white;
+    background: linear-gradient(145deg, #5cb85c, #4cae4c);
 }
-
 .action-buttons button.update-button:hover {
-    transform: scale(1.1);
-    background: linear-gradient(145deg, #218838, #28a745);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(145deg, #4cae4c, #5cb85c);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
 }
 
 .action-buttons button.delete-button {
-    background: linear-gradient(145deg, #dc3545, #c82333);
-    color: white;
+    background: linear-gradient(145deg, #d9534f, #c9302c);
+}
+.action-buttons button.delete-button:hover {
+    background: linear-gradient(145deg, #c9302c, #d9534f);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
 }
 
-.action-buttons button.delete-button:hover {
-    transform: scale(1.1);
-    background: linear-gradient(145deg, #c82333, #dc3545);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+/* 添加区域样式 */
+.add-section {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap; /* 响应式换行 */
+    align-items: center; /* 垂直居中对齐 */
 }
 
 input[type="text"] {
-    padding: 15px;
-    font-size: 1.2rem;
-    border: 2px solid rgba(255, 255, 255, 0.6);
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
     border-radius: 10px;
-    background: #f6faf9;
-    color: rgb(0, 0, 0);
+    background: #f8f9fa;
+    color: #333;
     outline: none;
-    margin-right: 10px;
     transition: all 0.3s ease;
+    flex-grow: 1; /* 占据可用空间 */
+    min-width: 180px; /* 最小宽度 */
 }
 
 input[type="text"]:focus {
-    border-color: #76f1bc;
-    box-shadow: 0 0 10px #a5c4a3, 0 0 40px #1e90ff;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 button.add-button {
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: 12px 25px;
     background: linear-gradient(145deg, #007bff, #0056b3);
     color: white;
     border: none;
     border-radius: 10px;
-    cursor: pointer;
+    cursor: pointer; /* Keep pointer on add button */
     transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    font-weight: 600;
+    flex-shrink: 0; /* 防止按钮被压缩 */
 }
 
 button.add-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     background: linear-gradient(145deg, #0056b3, #007bff);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
+/* 页脚 */
 .footer {
     text-align: center;
-    padding: 10px;
-    font-size: 1rem;
-    color: #dcdcdc;
+    padding: 20px 10px;
+    font-size: 0.9rem;
+    color: #888;
+    width: 100%;
+    margin-top: auto; /* 将页脚推到底部 */
 }
+
+/* 拖拽占位符样式 */
+.drag-placeholder {
+    /* Match .link-item's vertical space: height(55px) + margin-bottom(15px) = 70px total */
+    height: 55px; /* Estimated height based on padding and typical line height */
+    margin-bottom: 15px; /* Match .link-item margin-bottom */
+    background-color: rgba(0, 123, 255, 0.1);
+    border: 2px dashed #007bff;
+    border-radius: 15px; /* Match .link-item border-radius */
+    box-sizing: border-box; /* Border included in height */
+    transition: none; /* Placeholder should appear/disappear instantly */
+}
+
+/* Removed .make-space-above and .make-space-below */

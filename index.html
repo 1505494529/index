@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +7,21 @@
     <title>Dongshi 的内网导航</title>
     <link rel="stylesheet" href="index.css">
 </head>
-
 <body>
     <div class="container">
         <h1 class="mb-4">Dongshi 的内网导航</h1>
-        <div class="links"></div>
-        <div>
-            <input type="text" id="srcInput" placeholder="输入地址" />
-            <input type="text" id="nameInput" placeholder="输入记录名" />
-            <button class="add-button" onclick="add()">新增</button>
+        <!-- 链接列表容器 -->
+        <div class="links" id="linksContainer">
+            <!-- Loading placeholder -->
+            <p class="loading-placeholder" style="display: none; text-align: center; color: #888; padding: 20px; font-style: italic;">正在加载链接...</p>
+            <!-- Links will be generated here by JS -->
+            <!-- Placeholder will be inserted here during drag -->
+        </div>
+        <!-- 添加区域 -->
+        <div class="add-section">
+            <input type="text" id="srcInput" placeholder="输入地址 (例如: http://192.168.1.1)" />
+            <input type="text" id="nameInput" placeholder="输入记录名 (例如: 路由器)" />
+            <button class="add-button" onclick="addLink()">新增</button>
         </div>
     </div>
 </body>
